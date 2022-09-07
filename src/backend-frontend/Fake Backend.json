@@ -1,0 +1,7 @@
+[
+    {"cardNumber": false},
+    {"cardHolderName" : false},
+    {"monthDate" : false},
+    {"yearDate" : false},
+    {"CvcNumber" : false}
+]

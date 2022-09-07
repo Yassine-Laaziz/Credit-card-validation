@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding:0
+}
+
+html{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    background-image: url('../Assets/Landscape.jpg');
+    background-size: 100%;
+    background-position: bottom;
+}
+
+body{
+    height: 100vh;
+}

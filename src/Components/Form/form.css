@@ -1,0 +1,73 @@
+/*            ----Wide Screen Design----  (in progress)           */
+/*            ----Desktop Design----             */
+
+form{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    font-weight:600;
+    position: absolute;
+    top:17%;
+    right:10%;
+    width:32%;
+    height:55%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(12, 24, 59, 0.747);
+    border-radius: 15px;
+    box-shadow: rgba(0, 59, 221, 0.39);
+}
+.formInput{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 550;
+    font-size:1em;
+    width:30vw;
+    height:5vh;
+    border-radius: 5px;
+    background-color: rgba(158, 167, 192, 0.247);
+    border:none;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.26);
+    color:white
+} ::placeholder{color:white}
+
+.unvalid{
+    font-size: 0.75em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: lighter;
+    color:red;
+    margin-top:2%;
+    display: none;
+}
+
+.spaceBetween{
+    width: 95%;
+    display:flex;
+    justify-content: space-between;
+}
+label{display:block}
+
+.dateInput{
+    width:25%;
+    margin-right:5%
+}
+#cvcInput{width:15vw}
+
+.submitButton{
+    color:white;
+    font-size:100%;
+    background-image: linear-gradient(230deg, rgba(55, 5, 112, 0.7), rgba(0, 175, 152, 0.7), rgba(55, 5, 112, 0.7));
+    height:10%;
+    width:90%;
+    border-radius: 4px;
+    transition: 500ms;
+}.submitButton:hover{  
+    color:rgb(0, 255, 106);
+    width:100%;
+    height:13%;
+    cursor: pointer;
+}
+
+/*            ----Mobile Design----      (in progress)       */
+
+

@@ -3,11 +3,16 @@ import "./cards.css"
 const cards = () => {
   return (
     <>
+      <h1 style={{color: 'red'}}>Under Construction</h1>
+
       {/*The Front Side */}
 
       <div className="smartCard theFront">
-
-        <img className="basicLogo" alt="Basic Logo" src={require('../../Assets/DiamondLogo.png')}></img>
+        <img
+          className="basicLogo"
+          alt="Basic Logo"
+          src={require("../../Assets/DiamondLogo.png")}
+        ></img>
 
         <h2 className="Brand">Expensive Banks</h2>
 
@@ -19,7 +24,6 @@ const cards = () => {
           <span className="monthDate">00</span>/
           <span className="yearDate">00</span>
         </div>
-
       </div>
 
       {/*The Back Side */}

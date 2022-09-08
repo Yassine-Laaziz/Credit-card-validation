@@ -29,14 +29,15 @@ export const limitValue = (queryClass, state, setter, max, min) => {
 //the full name of the completed version of this method will be "addShrink"
 export const addSmallShrink = (queryClass) => {
     const box = document.querySelector(queryClass)
-    let total = 200
+    let total = 150
 
     for(let i = 0; i < box.innerText.length ; i++ ){
-        if ( i < 50 ) total -= 2.5
+        if ( i < 50 ) total -= 1.5
         else if ( i >= 50 && i < 80 ) total -= 0.5
     }
     box.style.fontSize = `${total}%`
 }
+
 
 export const addDots = (queryClass, state, setter, theLimit) => {
     if (document.querySelector(queryClass).nodeName === 'INPUT'){

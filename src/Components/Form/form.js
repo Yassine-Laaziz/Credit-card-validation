@@ -9,15 +9,12 @@ const Form = () => {
     document.querySelector(updatedQueryClass).innerText = data
   }
 
-  let isEmpty = true
   const initializeEmpty = (queryClass, initialValue) => {
     if (document.querySelector(queryClass).value === "") {
       document.querySelector(queryClass).value = initialValue
-      isEmpty = true
     }else if (document.querySelector(queryClass).innerText === ""){
       document.querySelector(queryClass).innerText = initialValue
-      isEmpty = true 
-    }else isEmpty = false
+    }
   }
 
   const numberChange = () => {
@@ -61,11 +58,19 @@ const Form = () => {
     document.querySelector(linkedQueryClass).style.boxShadow = "none"
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const request = new XMLHttpRequest()
+    request.open('GET', 'http://localhost:3000/Fake Backend.json', true)
+    request.send()
+    request.onload = () => console.log(request.responseText)
+  }
+
   return (
     <>
       {/*            ----The Form----             */}
 
-      <form action="results">
+      <form action="results" onSubmit={handleSubmit}>
         {/*divs are used to align items horizontally without the paragraphs centered */}
         <div className="input-group">
           <label htmlFor="numberInput">Card Number</label>
@@ -105,6 +110,7 @@ const Form = () => {
           <div className="input-group">
             <label htmlFor="monthInput">Exp. Date</label>
             <input
+              pattern="\d{2}"
               minLength={2}
               maxLength={2}
               onChange={monthChange}
@@ -116,6 +122,7 @@ const Form = () => {
               required
             />
             <input
+              pattern="\d{2}"
               minLength={2}
               maxLength={2}
               onChange={yearChange}
@@ -132,6 +139,7 @@ const Form = () => {
           <div className="input-group">
             <label htmlFor="cvcInput">CVC</label>
             <input
+              pattern="\d{3,4}"
               minLength={3}
               maxLength={4}
               onChange={cvcChange}

@@ -30,6 +30,7 @@ form{
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.26);
     color:white
 } ::placeholder{color:white}
+.formInput:focus{outline: none}
 
 .unvalid{
     font-size: 0.75em;

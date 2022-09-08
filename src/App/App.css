@@ -6,10 +6,13 @@
 html{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
     background-image: url('../Assets/Landscape.jpg');
-    background-size: 100%;
-    background-position: bottom;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
-body{
-    height: 100vh;
+@media (orientation:portrait) {
+    html{
+        background-image: url('../Assets/Portrait.jpg');
+    }
 }

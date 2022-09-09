@@ -59,11 +59,18 @@ const Form = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const request = new XMLHttpRequest()
-    request.open('GET', 'http://localhost:3000/Fake Backend.json', true)
-    request.send()
-    request.onload = () => console.log(request.responseText)
+    //i could've used XMLHttpRequest Here but there's no backend server so i'll just simulate it
+    const data = JSON.stringify(require('./fakeBackend.json'))//simulating initial responseText
+    const parsedData = JSON.parse(data)//parsing the simulated text
+    //in this section we give the input-group a class of 'active' and if a input-group 
+    // is active in css the unvalid message text will be shown with display:block
+    let Submittable;
+    parsedData.forEach(object => {
+      if (!object.value) {
+        document.querySelector(Object.keys(object)).classList.toggle('active')
+        Submittable = false
+    }})
+    if (!Submittable) e.preventDefault()
   }
 
   return (
@@ -72,7 +79,7 @@ const Form = () => {
 
       <form action="results" onSubmit={handleSubmit}>
         {/*divs are used to align items horizontally without the paragraphs centered */}
-        <div className="input-group">
+        <div className="input-group ig1">
           <label htmlFor="numberInput">Card Number</label>
           <input
             pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}|\d{4}\s?\d{6}\s?\d{5}"
@@ -90,7 +97,7 @@ const Form = () => {
           <p className="unvalid">unvalid card number</p>
         </div>
 
-        <div className="input-group">
+        <div className="input-group ig2">
           <label htmlFor="nameInput">Card Holder name</label>
           <input
             onChange={nameChange}
@@ -107,7 +114,7 @@ const Form = () => {
         <div className="spaceBetween">
           {/*this is used to align items responsively to the screen, else it'd be unresponsive and bulky*/}
 
-          <div className="input-group">
+          <div className="input-group ig3">
             <label htmlFor="monthInput">Exp. Date</label>
             <input
               pattern="\d{2}"
@@ -136,7 +143,7 @@ const Form = () => {
             <p className="unvalid">unvalid expiry date</p>
           </div>
 
-          <div className="input-group">
+          <div className="input-group ig4">
             <label htmlFor="cvcInput">CVC</label>
             <input
               pattern="\d{3,4}"

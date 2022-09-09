@@ -11,7 +11,7 @@ const cards = () => {
         <img
           className="basicLogo"
           alt="Basic Logo"
-          src={require("../../Assets/DiamondLogo.png")}
+          src={require("../../Assets/DollarLogo.png")}
         ></img>
 
         <h2 className="Brand">Expensive Banks</h2>

@@ -24,6 +24,7 @@ form{
     font-size:1em;
     width:30vw;
     height:5vh;
+    padding-left: 6px;
     border-radius: 5px;
     background-color: rgba(158, 167, 192, 0.247);
     border:none;
@@ -33,20 +34,24 @@ form{
 .formInput:focus{outline: none}
 
 .unvalid{
-    font-size: 0.75em;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     font-weight: lighter;
-    color:red;
+    color: darkred;
+    background-color: black;
     margin-top:2%;
     display: none;
 }
+.input-group.active .unvalid{display: block}
 
 .spaceBetween{
     width: 95%;
     display:flex;
     justify-content: space-between;
 }
-label{display:block}
+label{
+    display:block;
+    color:rgb(87, 255, 233)
+}
 
 .dateInput{
     width:25%;

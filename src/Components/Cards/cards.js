@@ -3,7 +3,7 @@ import "./cards.css"
 const cards = () => {
   return (
     <>
-      <h1 style={{color: 'red'}}>Under Construction</h1>
+      <h1 style={{color: 'red'}}>Under Construction: Responsiveness</h1>
 
       {/*The Front Side */}
 

@@ -29,19 +29,23 @@ form{
     background-color: rgba(158, 167, 192, 0.247);
     border:none;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.26);
-    color:white
+    color:white;
+    outline:1px solid black
 } ::placeholder{color:white}
 .formInput:focus{outline: none}
 
-.unvalid{
+.incorrect{
     font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     font-weight: lighter;
-    color: darkred;
-    background-color: black;
+    color: transparent;
     margin-top:2%;
-    display: none;
+    transition: 350ms;
 }
-.input-group.active .unvalid{display: block}
+.incorrect.active{
+    background-color: rgba(0, 0, 0, 0.3);
+    text-decoration: white underline;
+    color:red
+}
 
 .spaceBetween{
     width: 95%;

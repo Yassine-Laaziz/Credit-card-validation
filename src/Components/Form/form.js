@@ -4,6 +4,8 @@ import { addSmallShrink, addDots } from "../methods"
 import { useState } from "react"
 
 const Form = () => {
+
+  //    <functions in use> 
   const render = (inputQueryClass, updatedQueryClass) => {
     let data = document.querySelector(inputQueryClass).value
     document.querySelector(updatedQueryClass).innerText = data
@@ -17,7 +19,17 @@ const Form = () => {
     }
   }
 
+  const removeActive = querySelector => {
+    if (document.querySelector(querySelector).classList.contains('active')){
+      document.querySelector(querySelector).classList.remove('active')
+    }}
+  //    </Functions in use>
+
+  
+  //    <Input Changes>
+
   const numberChange = () => {
+    removeActive('.ig1 .incorrect')
     render("#numberInput", ".cardNumber")
     initializeEmpty(".cardNumber", "0000 0000 0000 0000")
   }
@@ -26,6 +38,7 @@ const Form = () => {
   const nameChange = () => {
     // the world's longest name is 1000+ characters long so i will just not limit this input,
     // instead i'll make the text shrink and if it's too long have 3 dots at the end
+    removeActive('.ig2 .incorrect')
     render("#nameInput", ".cardHolder")
     addSmallShrink(".cardHolder")
     addDots(".cardHolder", nameDots, setNameDots, 80)
@@ -35,21 +48,28 @@ const Form = () => {
   }
 
   const monthChange = () => {
+    removeActive('.ig3 .incorrect')
     render("#monthInput", ".monthDate")
     initializeEmpty(".monthDate", "00")
   }
 
   const yearChange = () => {
+    removeActive('.ig3 .incorrect')
     render("#yearInput", ".yearDate")
     initializeEmpty(".yearDate", "00")
   }
 
   const cvcChange = () => {
+    removeActive('.ig4 .incorrect')
     render("#cvcInput", ".cvcArea")
     initializeEmpty(".cvcArea", "000")
   }
+  //    </Input Changes>
 
-  const handleFocus = (linkedQueryClass, e) => {
+
+  //       <Effects>
+
+  const handleFocus = (linkedQueryClass) => {
     let style = document.querySelector(linkedQueryClass).style
     style.borderRadius = "4px"
     style.boxShadow = "0 0 0 1px white"
@@ -57,33 +77,40 @@ const Form = () => {
   const handleBlur = (linkedQueryClass) => {
     document.querySelector(linkedQueryClass).style.boxShadow = "none"
   }
+  //       </Effects>
+
+
+  //       <Submitting>
 
   const handleSubmit = (e) => {
     //i could've used XMLHttpRequest Here but there's no backend server so i'll just simulate it
-    const data = JSON.stringify(require('./fakeBackend.json'))//simulating initial responseText
-    const parsedData = JSON.parse(data)//parsing the simulated text
-    //in this section we give the input-group a class of 'active' and if a input-group 
-    // is active in css the unvalid message text will be shown with display:block
-    let Submittable;
-    parsedData.forEach(object => {
-      if (!object.value) {
-        document.querySelector(Object.keys(object)).classList.toggle('active')
+    //POST method goes here to send Input data but there's no backend so i'm simulating only GET.
+    const data = JSON.stringify(require('./fakeBackend.json'))//here i'm simulating the initial responseText
+    const parsedData = JSON.parse(data)
+    //in this section if the input is tested by the backend and sent back as true, we give the 
+    //<p class="incorrect"> a class of 'active' and if it's active in css the <p> text will be shown.
+    let Submittable = true
+      Object.values(parsedData).forEach( (boolean, i) => {
+      if (!boolean) {
+        const classes = document.querySelector(`.ig${i+1} .incorrect`).classList
+        if (!classes.contains('active')) classes.add('active')
         Submittable = false
-    }})
+      }})
     if (!Submittable) e.preventDefault()
   }
+  //      </Submitting>
 
   return (
     <>
       {/*            ----The Form----             */}
 
-      <form action="results" onSubmit={handleSubmit}>
+      <form action='#' onSubmit={handleSubmit}>
         {/*divs are used to align items horizontally without the paragraphs centered */}
         <div className="input-group ig1">
           <label htmlFor="numberInput">Card Number</label>
           <input
             pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}|\d{4}\s?\d{6}\s?\d{5}"
-            title="A valid card number required"
+            title="Card Number"
             minLength={15}
             maxLength={19}
             onChange={numberChange}
@@ -94,12 +121,13 @@ const Form = () => {
             placeholder="---- ---- ---- ----"
             required
           />
-          <p className="unvalid">unvalid card number</p>
+          <p className="incorrect">inCorrect card number!</p>
         </div>
 
         <div className="input-group ig2">
           <label htmlFor="nameInput">Card Holder name</label>
           <input
+            title="Cardholder Name"
             onChange={nameChange}
             onFocus={() => handleFocus(".cardHolder")}
             onBlur={() => handleBlur(".cardHolder")}
@@ -108,7 +136,7 @@ const Form = () => {
             placeholder="e.g John Doe"
             required
           />
-          <p className="unvalid">unvalid cardholder name</p>
+          <p className="incorrect">inCorrect cardholder name!</p>
         </div>
 
         <div className="spaceBetween">
@@ -118,6 +146,7 @@ const Form = () => {
             <label htmlFor="monthInput">Exp. Date</label>
             <input
               pattern="\d{2}"
+              title="Expiary Month"
               minLength={2}
               maxLength={2}
               onChange={monthChange}
@@ -130,6 +159,7 @@ const Form = () => {
             />
             <input
               pattern="\d{2}"
+              title="Expiary Year"
               minLength={2}
               maxLength={2}
               onChange={yearChange}
@@ -140,13 +170,14 @@ const Form = () => {
               placeholder="YY"
               required
             />
-            <p className="unvalid">unvalid expiry date</p>
+            <p className="incorrect">inCorrect expiry date!</p>
           </div>
 
           <div className="input-group ig4">
             <label htmlFor="cvcInput">CVC</label>
             <input
               pattern="\d{3,4}"
+              title="Cvc Code"
               minLength={3}
               maxLength={4}
               onChange={cvcChange}
@@ -157,7 +188,7 @@ const Form = () => {
               placeholder="---"
               required
             />
-            <p className="unvalid">unvalid Cvc number</p>
+            <p className="incorrect">inCorrect Cvc number!</p>
           </div>
         </div>
         <input

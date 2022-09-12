@@ -1,13 +1,5 @@
-import Form from "../Components/Form/form"
-import Cards from "../Components/Cards/cards"
+import CreditCardValidation from "../Pages/CreditCardValidation/CreditCardValidation.js"
 import './App.css'
 
-const App = () => {
-  return (
-    <>
-    <Form />
-    <Cards />
-    </>
-  )
-}
+const App = () => <CreditCardValidation />
 export default App

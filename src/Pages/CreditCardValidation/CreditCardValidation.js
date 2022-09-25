@@ -1,5 +1,5 @@
 import "./CreditCardValidation.css"
-import { addSmallShrink, addDots } from "../methods"
+import { addDots } from "../methods"
 import { useState } from "react"
 
 const CreditCardValidation = () => {
@@ -38,8 +38,7 @@ const CreditCardValidation = () => {
     // instead i'll make the text shrink and if it's too long have 3 dots at the end
     removeActive(".ig2 .incorrect")
     render("#nameInput", ".cardHolder")
-    addSmallShrink(".cardHolder")
-    addDots(".cardHolder", nameDots, setNameDots, 80)
+    addDots(".cardHolder", nameDots, setNameDots, 30)
     initializeEmpty(".cardHolder", "JOHN DOE")
     document.querySelector(".cardHolder").innerText = document
       .querySelector(".cardHolder")
@@ -102,7 +101,28 @@ const CreditCardValidation = () => {
 
   return (
     <div className="content">
-      <h1 style={{ color: "red" }}>Under Construction: Responsiveness</h1>
+      {/*The Front Side */}
+
+      <div className="smartCard theFront">
+        <div>
+          <img
+            className="basicLogo"
+            alt="Basic Logo"
+            src={require("../../Assets/DollarLogo.png")}
+          ></img>
+          <h2 className="Brand">Expensive Banks</h2>
+        </div>
+
+        <p className="cardNumber">0000 0000 0000 0000</p>
+
+        <div>
+          <p className="cardHolder">JOHN DOE</p>
+          <div className="expDate">
+            <span className="monthDate">00</span>/
+            <span className="yearDate">00</span>
+          </div>
+        </div>
+      </div>
 
       {/*            ----THE FORM----             */}
 
@@ -172,6 +192,7 @@ const CreditCardValidation = () => {
               placeholder="YY"
               required
             />
+            <br />
             <p className="incorrect">inCorrect expiry date!</p>
           </div>
 
@@ -190,36 +211,13 @@ const CreditCardValidation = () => {
               placeholder="---"
               required
             />
-            <p className="incorrect">inCorrect Cvc number!</p>
+            <p className="incorrect">inCorrect Cvc!</p>
           </div>
         </div>
-        <input className="submitButton" type="submit" value="Confirm" />
+        <div>
+          <button className="submitButton" type="submit">Confirm</button>
+        </div>
       </form>
-
-      {/*            ----CREDIT CARDS----             */}
-
-      {/*The Front Side */}
-
-      <div className="smartCard theFront">
-        <div>
-          <img
-            className="basicLogo"
-            alt="Basic Logo"
-            src={require("../../Assets/DollarLogo.png")}
-          ></img>
-          <h2 className="Brand">Expensive Banks</h2>
-        </div>
-
-        <p className="cardNumber">0000 0000 0000 0000</p>
-
-        <div>
-          <p className="cardHolder">JOHN DOE</p>
-          <div className="expDate">
-            <span className="monthDate">00</span>/
-            <span className="yearDate">00</span>
-          </div>
-        </div>
-      </div>
 
       {/*The Back Side */}
 
